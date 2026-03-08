@@ -1,6 +1,9 @@
-ifneq ("$(wildcard .env)","")
-    include .env
-    export
+ifneq ("$(wildcard .env.local)","")
+	include .env.local
+	export
+else ifneq ("$(wildcard .env)","")
+	include .env
+	export
 endif
 
 PROJECT_NAME ?= mysql-template

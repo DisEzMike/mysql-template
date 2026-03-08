@@ -1,2 +1,3 @@
 .DS_STORE
 sql/init.sql
+.env.local
