@@ -1,0 +1,22 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: ${PROJECT_NAME}
+    restart: always
+    ports:
+      - "${SQL_PORT:-3306}:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${SQL_PASSWORD}
+    volumes:
+      - ${SQL_FILE}:/docker-entrypoint-initdb.d/init.sql
+      - mysql_data:/var/lib/mysql
+    networks:
+      - default
+
+networks:
+  default:
+    name: ${PROJECT_NAME}_network
+
+volumes:
+  mysql_data:
+    name: ${PROJECT_NAME}_mysql_data
